@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Api\ClientesController;
 
@@ -38,6 +39,7 @@ Route::post('/sanctum/token', function (Request $request) {
     return $token;
 });
 
+Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum'])->group(function () {
     
@@ -46,11 +48,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
     });
 
     Route::controller(ClientesController::class)->group(function () {
-        Route::get('/cliente', 'read');
-        Route::post('/cliente', 'store');
-        Route::get('/cliente/{id}', 'show');
-        Route::post('/cliente/{id}', 'update');
-        Route::delete('/cliente/{id}', 'destroy');
+        Route::get('/cliente', 'read')->name('api.cliente.read');
+        Route::post('/cliente', 'store')->name('api.cliente.store');
+        Route::get('/cliente/{id}', 'show')->name('api.cliente.show');
+        Route::post('/cliente/{id}', 'update')->name('api.cliente.update');
+        Route::delete('/cliente/{id}', 'destroy')->name('api.cliente.destroy');
     });
 
 });
