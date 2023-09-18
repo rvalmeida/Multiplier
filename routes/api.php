@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Http\Controllers\Api\ClientesController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,7 +45,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
         return $request->user();
     });
 
-    Route::get('/testes', function (Request $request) {
-        return 'testes';
+    Route::controller(ClientesController::class)->group(function () {
+        Route::get('/cliente', 'read');
+        Route::post('/cliente', 'store');
+        Route::get('/cliente/{id}', 'show');
+        Route::post('/cliente/{id}', 'update');
+        Route::delete('/cliente/{id}', 'destroy');
     });
+
 });
