@@ -72,3 +72,14 @@
         </div>
     </div>
 </div>
+
+<script>
+    $("#cnpj").on("input", function() {
+        var cnpj = $(this).val().replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+        if (cnpj.length <= 14) {
+            $(this).mask("99.999.999/9999-99");
+        } else {
+            $(this).mask("99.999.999/9999-99", { reverse: true });
+        }
+    });
+</script>

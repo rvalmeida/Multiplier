@@ -36,9 +36,8 @@ fetch('api/cliente', {
     deleteButtons.forEach(button => {
         button.addEventListener('click', function() {
             const id = this.getAttribute('data-id');
-            // console.log('Botão de exclusão clicado para o ID:', id);
+            //proteção csrf_token            
             const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
             fetch(`api/cliente/${id}`, {
                 method: 'DELETE',
                 headers: {
@@ -47,7 +46,6 @@ fetch('api/cliente', {
                     'X-CSRF-TOKEN': csrfToken,
                 },
             })
-            
             .then(response => response.json())
             .then(data => {
                 // Remover a linha correspondente da tabela

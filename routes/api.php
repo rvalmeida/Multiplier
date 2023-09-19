@@ -25,28 +25,20 @@ Route::post('/sanctum/token', function (Request $request) {
         'password' => 'required',
         'device_name' => 'required',
     ]);
- 
     $user = User::where('email', $request->email)->first();
- 
     if (! $user || ! Hash::check($request->password, $user->password)) {
         throw ValidationException::withMessages([
             'email' => ['The provided credentials are incorrect.'],
         ]);
     }
-    
     $token = json_encode(['token'=> $user->createToken($request->device_name)->plainTextToken]);
-
     return $token;
 });
 
 Broadcast::routes(['middleware' => ['auth:sanctum']]);
 
 Route::middleware(['auth:sanctum'])->group(function () {
-    
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
-
+    Route::get('/user', function (Request $request) {return $request->user();});
     Route::controller(ClientesController::class)->group(function () {
         Route::get('/cliente', 'read')->name('api.cliente.read');
         Route::post('/cliente', 'store')->name('api.cliente.store');
@@ -54,5 +46,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
         Route::post('/cliente/{id}', 'update')->name('api.cliente.update');
         Route::delete('/cliente/{id}', 'destroy')->name('api.cliente.destroy');
     });
-
 });
