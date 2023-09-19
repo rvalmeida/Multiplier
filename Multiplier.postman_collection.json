@@ -1,0 +1,298 @@
+{
+	"info": {
+		"_postman_id": "afbe1b12-fca8-4e75-a6ed-42d948bf2d8b",
+		"name": "Multiplier",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20162759"
+	},
+	"item": [
+		{
+			"name": "token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "rvalmeida.ti@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "134679Rv@"
+						},
+						{
+							"key": "device_name",
+							"value": "Rogerio Vieira Almeida"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/sanctum/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"sanctum",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "read",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "XSRF-TOKEN=eyJpdiI6IjU1SlVtL05jL2FlUmNrRVJDakZ6ckE9PSIsInZhbHVlIjoiQkFuYjhLdDVsRnc3MTdMTEtSQTN4RHE0VnIrYkpYckY5a0xiUVRZNXdkVFpRWk0xV25iOVFGbW1EWkNyNFZTc0hoaVpvREtRUHQ3Y0hTTnZJbnFHVkZjSDN1L3VmUVZCLzZTTjdIWEJoR3VNSE1HamE3YmFEVFk2SENvdmV3UHgiLCJtYWMiOiI2NDZmZWIyM2Y2NmYxY2M0YjliYjE1ZDJjNmNkZTQ1ZmVjM2ZhNjg0NWYwYmViYThlZTdiZjExMWZlM2I0N2U1IiwidGFnIjoiIn0%3D; laravel_session=eyJpdiI6ImxrSjdiTm5rcUUvMDFadkxBUkd5QXc9PSIsInZhbHVlIjoiVlh0OGNvdjUxVldTdkhKcWh1aGliNG0vRm5LaS9nVms3cnBSUWQ4TTV2RkZ3a2RWL1BqOUk4aXVpUm40QkJtanVYb3RGVnR5TDkyMnVFb0NWb25wL1pjQk1uR2hOQW1kNGVXVkh3VktJdy9Cem53SzBZNytxMEhncjhicEpjclgiLCJtYWMiOiJmOTQxYjljOTc3OTRmMzkwOWRkNDcwOTViMDQ3MmVmNzczOWJlMmI3M2M1ZTk5ZTI3MzAzNWI1MTJkNWRiY2Y1IiwidGFnIjoiIn0%3D",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/user",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"followRedirects": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|3MMzjrn5OXrkiLldpoeA6WTvXjMBYqIbm0dsYILXddef635a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nome_fantasia",
+							"value": "testes 052"
+						},
+						{
+							"key": "cnpj",
+							"value": "0002223334445"
+						},
+						{
+							"key": "endereco",
+							"value": "testes"
+						},
+						{
+							"key": "cidade",
+							"value": "teste"
+						},
+						{
+							"key": "estado",
+							"value": "ts"
+						},
+						{
+							"key": "pais",
+							"value": "teste"
+						},
+						{
+							"key": "telefone",
+							"value": "911995555"
+						},
+						{
+							"key": "email",
+							"value": "tgm12@gmail.com"
+						},
+						{
+							"key": "area_de_atuacao",
+							"value": "testes"
+						},
+						{
+							"key": "quadro_societario",
+							"value": "testes"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/cliente",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cliente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|3MMzjrn5OXrkiLldpoeA6WTvXjMBYqIbm0dsYILXddef635a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/cliente/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cliente",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|3MMzjrn5OXrkiLldpoeA6WTvXjMBYqIbm0dsYILXddef635a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "pais",
+							"value": "teste update",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/cliente/6",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cliente",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "3|3MMzjrn5OXrkiLldpoeA6WTvXjMBYqIbm0dsYILXddef635a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "localhost:8000/api/cliente/5",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"cliente",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

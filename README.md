@@ -23,4 +23,10 @@
 ### Passo 3
 
 * Inicializar o servidor
+
   * php artisan serve
+
+### Passo 4
+
+  * Arquivo para testes da API utilizando o Postman na raiz do projeto
+  * "Multiplier.postman_collection.json"
