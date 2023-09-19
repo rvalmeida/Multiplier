@@ -6,6 +6,12 @@
             {{ request()->query('success') }}
         </div>
     @endif
+
+    @if(request()->query('error'))
+        <div class="alert alert-danger">
+            {{ request()->query('error') }}
+        </div>
+    @endif
     <form method="POST" action="{{ route('api.cliente.store')}}" id="formulario">
         @csrf
         <x-formularioCliente></x-formularioCliente>
@@ -32,8 +38,12 @@
                 body: new FormData(form) 
             });
             const data = await response.json();
+
+            console.log(data)
             if (data.message === 'Customer successfully registered') {
                 window.location.href = '/cadastro?success=Cadastro%20efetuado%20com%20sucesso';
+            }else{
+                window.location.href = '/cadastro?error=CNPJ Invalido';
             }
         } catch (error) {
             console.error('Erro ao fazer a requisição:', error);

@@ -27,11 +27,30 @@ class ClientesController extends Controller
     public function store(Request $request)
     {
 
-        $response = $request->all();
-        Clientes::create($response);
+        $cnpjSemPontos = str_replace(['.', '-', '/'], '', $request->cnpj);
+        $client = new Client();
+        $url = "https://brasilapi.com.br/api/cnpj/v1/{".$cnpjSemPontos."}";
 
-        return response()->json(['message'=>__('messages.api_store'), 'data'=>$response]);  
+        try {
+            $response = $client->get($url);
 
+            if ($response->getStatusCode() == 200) {
+                $data = json_decode($response->getBody(), true);
+    
+                if (isset($data['error'])) {
+                    return json_encode($data);
+                }
+    
+                $return = $request->all();
+                Clientes::create($return);
+
+                return response()->json(['message'=>__('messages.api_store'), 'data'=>$return]);  
+            } else {
+                return response()->json(['error'=>__('messages.api_unavailable')]);  
+            }
+        } catch (\Exception $e) {
+            return response()->json(['error'=>__('messages.api_cnpj_invalido')]);  
+        }
     }
 
     /**
